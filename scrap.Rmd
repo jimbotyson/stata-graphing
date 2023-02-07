@@ -1,0 +1,26 @@
+---
+title: "Tables of Tests"
+author: "Jim Tyson"
+date: "23/05/2022"
+output: html_document
+---
+
+We can make a table from a test.
+
+```
+import delimited https://www.ucl.ac.uk/~ccaajim/results.csv, clear
+egen avxm = rowmean(maths english history)
+
+ttest avxm, by(gender)
+
+return list
+
+table (command) (result), \\\
+  command(Normotensiv = r(mu_1) \\\
+  Hypertensive = r(mu_2) \\\
+  Diff = (r(mu_2)-r(mu_1)) \\\
+  pvalue = r(p) : ttest avxm, by(gender)
+
+``
+```
+
